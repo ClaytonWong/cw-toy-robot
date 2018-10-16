@@ -1,0 +1,43 @@
+Turning related
+-----------------
+case current direction North,
+if turn left, then new direction is West
+if turn right, then new direction is East
+
+case current direction East,
+if turn left, then new direction is North
+if turn right, then new direction is South
+ 
+case current direction South,
+if turn left, then new direction is East
+if turn right, then new direction is West
+
+case current direction West,
+if turn left, then new direction is South
+if turn right, then new direction is East
+
+
+Going forward related
+---------------------
+case current direction North, if you go forward 1 unit
+then y = y + 1
+
+case current direction East, if you go forward 1 unit
+then x = x + 1
+ 
+case current direction South, if you go forward 1 unit
+then y = y - 1
+
+case current direction West, if you go forward 1 unit
+then x = x - 1
+
+
+Place command related
+---------------------
+X and Y can only be 0, 1, 2, 3, or 4
+
+
+More safety related
+-------------------
+The robot falls off the table if
+new X and/or Y is negative or greater than 5
