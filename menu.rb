@@ -1,5 +1,6 @@
 require_relative "chk_safe_coords"
 require_relative "command"
+require_relative "get_input"
 
 def menu()
   system 'clear' # Clear Screen
@@ -17,8 +18,9 @@ def menu()
     puts "e.g. a valid first command is:"
     puts "PLACE 0,0,NORTH"
 
-    input = gets.upcase.strip # Read input from user
-    inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
+    #input = gets.upcase.strip # Read input from user
+    #inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
+    inputs = get_input()
     
     my_command = Command.new
     my_command.action = inputs[0]
@@ -40,8 +42,9 @@ def menu()
   end # End while loop for valid PLACE command
   
   loop do
-    input = gets.upcase.strip # Read input from user
-    inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
+    #input = gets.upcase.strip # Read input from user
+    #inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
+    inputs = get_input()
 
     case inputs[0]
       when "PLACE"
