@@ -23,13 +23,13 @@ def menu()
   # While no valid PLACE command is given first
   while valid_place == false
     # Ask for valid place command
-    puts "Please enter starting location and facing for robot,"
-    puts "format is: PLACE X,Y,F"
-    puts "Where X and Y can be 0, 1, 2, 3, or 4"
-    puts "and F can be NORTH, EAST, SOUTH, or WEST"
-    puts "e.g. a valid first command is:"
-    puts "PLACE 0,0,NORTH"
-    print ">"
+    #puts "Please enter starting location and facing for robot,"
+    #puts "format is: PLACE X,Y,F"
+    #puts "Where X and Y can be 0, 1, 2, 3, or 4"
+    #puts "and F can be NORTH, EAST, SOUTH, or WEST"
+    #puts "e.g. a valid first command is:"
+    #puts "PLACE 0,0,NORTH"
+    #print ">"
 
     inputs = get_input() # Get input from user
     my_command.action = inputs[0] # Get action part of input
@@ -43,8 +43,8 @@ def menu()
 
       if chk_safe_coords(my_command.x, my_command.y)
         valid_place = true
-        puts "Safe placement"
-        puts " "
+        #puts "Safe placement"
+        #puts " "
 
         # You have put the robot onto a safe place so
         # initialize current place and direction with 
@@ -54,25 +54,25 @@ def menu()
         current_place_and_direction.y = my_command.y
         current_place_and_direction.f = my_command.f
       else
-        puts "Unsafe placement"
-        puts "Placement ignored"
-        puts " "
+        #puts "Unsafe placement"
+        #puts "Placement ignored"
+        #puts " "
       end # end if chk_safe_coords(x, y)
     end # end If PLACE command given   
   end # End while loop for valid PLACE command
   
   loop do
     # Ask for next command
-    puts " "
-    puts "Please enter a command."
-    puts "Choose from PLACE, LEFT, RIGHT, MOVE, or REPORT"
-    puts "If you want to place, use format below:"
-    puts "PLACE X,Y,F"
-    puts "Where X and Y can be 0, 1, 2, 3, or 4"
-    puts "and F can be NORTH, EAST, SOUTH, or WEST"
-    puts "e.g. a valid place command is:"
-    puts "PLACE 0,0,NORTH"
-    print ">"
+    #puts " "
+    #puts "Please enter a command."
+    #puts "Choose from PLACE, LEFT, RIGHT, MOVE, or REPORT"
+    #puts "If you want to place, use format below:"
+    #puts "PLACE X,Y,F"
+    #puts "Where X and Y can be 0, 1, 2, 3, or 4"
+    #puts "and F can be NORTH, EAST, SOUTH, or WEST"
+    #puts "e.g. a valid place command is:"
+    #puts "PLACE 0,0,NORTH"
+    #print ">"
     inputs = get_input() # Get input from user
     my_command.action = inputs[0] # Get action part of input
 
@@ -85,8 +85,8 @@ def menu()
         my_command.f = x_y_f[2] # Third part is facing
 
         if chk_safe_coords(my_command.x, my_command.y)
-          puts "Safe placement"
-          puts " "
+          #puts "Safe placement"
+          #puts " "
 
           # You have put the robot onto a safe place so
           # update current place and direction with 
@@ -96,9 +96,9 @@ def menu()
           current_place_and_direction.y = my_command.y
           current_place_and_direction.f = my_command.f
         else
-          puts "Unsafe placement"
-          puts "Placement ignored"
-          puts " "
+          #puts "Unsafe placement"
+          #puts "Placement ignored"
+          #puts " "
         end # end if chk_safe_coords(x, y)
       when "LEFT"
         # Update current facing
@@ -112,8 +112,8 @@ def menu()
 
         # Check if you end up in a safe place
         if chk_safe_coords(next_place_and_direction.x, next_place_and_direction.y)
-          puts "Safe move"
-          puts " "
+          #puts "Safe move"
+          #puts " "
 
           # You have moved the robot to a safe place so
           # update current place with new
@@ -122,9 +122,9 @@ def menu()
           current_place_and_direction.x = next_place_and_direction.x
           current_place_and_direction.y = next_place_and_direction.y
         else
-          puts "Unsafe move"
-          puts "Movement ignored"
-          puts " "
+          #puts "Unsafe move"
+          #puts "Movement ignored"
+          #puts " "
         end # end if chk_safe_coords(x, y)
       when "REPORT"
         print "#{current_place_and_direction.x},"
@@ -132,8 +132,8 @@ def menu()
         print "#{current_place_and_direction.f}"
         puts  " "
       else
-        puts "INVALID INPUT GIVEN!"
-        puts " "
+        #puts "INVALID INPUT GIVEN!"
+        #puts " "
     end # End case
   end # End loop do for menu
 end # End menu
