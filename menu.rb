@@ -1,14 +1,4 @@
-# The chk_safe_coords function checks if x and y
-# coordinates given will place the toy robot onto
-# a spot on the table
-def chk_safe_coords(x, y)
-  # If x or y is negative or greater than 4
-  if x < 0 || x > 4 || y < 0 || y > 4
-    return false # Return "unsafe"
-  else
-    return true  # Return "safe"
-  end
-end
+require_relative "chk_safe_coords"
 
 def menu()
   system 'clear' # Clear Screen
@@ -37,22 +27,33 @@ def menu()
       f = i[2] # Third part is facing
 
       if chk_safe_coords(x, y)
+        valid_place = true
         puts "safe placement"
       else
         puts "unsafe placement"
-      end
-      #puts x
-      #puts y
-      #puts f
-      #puts x + 1
-    end    
-    
-    valid_place = true
-  end
+      end # end if chk_safe_coords(x, y)
+    end # end If PLACE command given   
+  end # End while loop for valid PLACE command
   
-  #loop do
+  loop do
+    input = gets.upcase.strip # Read input from user
+    inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
 
-  #end # End loop do for menu
+    case inputs[0]
+      when "PLACE"
+        puts "place"
+      when "LEFT"
+        puts "left"
+      when "RIGHT"
+        puts "right"
+      when "MOVE"
+        puts "move"
+      when "REPORT"
+        puts "report"
+      else
+        puts "INVALID INPUT GIVEN!"
+    end # End case
+  end # End loop do for menu
 end # End menu
 
 menu()
