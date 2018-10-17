@@ -1,6 +1,7 @@
 require_relative "chk_safe_coords"
 require_relative "command"
 require_relative "get_input"
+require_relative "place_direction"
 
 def menu()
   system 'clear' # Clear Screen
@@ -18,23 +19,31 @@ def menu()
     puts "e.g. a valid first command is:"
     puts "PLACE 0,0,NORTH"
 
-    #input = gets.upcase.strip # Read input from user
-    #inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
-    inputs = get_input()
-    
+    inputs = get_input() # Get input from user
+
     my_command = Command.new
-    my_command.action = inputs[0]
+    my_command.action = inputs[0] # Get action part of input
     
     if my_command.action == "PLACE" # If PLACE command given
-      i = inputs[1].to_s.split(",") # Split second part of PLACE command marked by ','
+      x_y_f = inputs[1].to_s.split(",") # Split second part of PLACE command marked by ','
       
-      my_command.x = i[0].to_i # First part is x coordinate
-      my_command.y = i[1].to_i # Second part is y coordinate
-      my_command.f = i[2] # Third part is facing
+      my_command.x = x_y_f[0].to_i # First part is x coordinate
+      my_command.y = x_y_f[1].to_i # Second part is y coordinate
+      my_command.f = x_y_f[2] # Third part is facing
 
       if chk_safe_coords(my_command.x, my_command.y)
         valid_place = true
         puts "safe placement"
+
+        # You have put the robot onto a safe place so
+        # initialize current place and direction with 
+        # x and y coordinates and facing given at input
+        
+        current_place_and_direction = Place_direction.new
+
+        current_place_and_direction.x = my_command.x
+        current_place_and_direction.y = my_command.y
+        current_place_and_direction.f = my_command.f
       else
         puts "unsafe placement"
       end # end if chk_safe_coords(x, y)
@@ -42,13 +51,30 @@ def menu()
   end # End while loop for valid PLACE command
   
   loop do
-    #input = gets.upcase.strip # Read input from user
-    #inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
-    inputs = get_input()
+    inputs = get_input() # Get input from user
+    my_command.action = inputs[0] # Get action part of input
 
-    case inputs[0]
+    case my_command.action
       when "PLACE"
-        puts "place"
+        x_y_f = inputs[1].to_s.split(",") # Split second part of PLACE command marked by ','
+      
+        my_command.x = x_y_f[0].to_i # First part is x coordinate
+        my_command.y = x_y_f[1].to_i # Second part is y coordinate
+        my_command.f = x_y_f[2] # Third part is facing
+
+        if chk_safe_coords(my_command.x, my_command.y)
+          puts "safe placement"
+
+          # You have put the robot onto a safe place so
+          # update current place and direction with 
+          # x and y coordinates and facing given at input
+
+          current_place_and_direction.x = my_command.x
+          current_place_and_direction.y = my_command.y
+          current_place_and_direction.f = my_command.f
+        else
+          puts "unsafe placement"
+        end # end if chk_safe_coords(x, y)
       when "LEFT"
         puts "left"
       when "RIGHT"
