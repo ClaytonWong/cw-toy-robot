@@ -2,6 +2,7 @@
 require_relative "get_input"
 require_relative "chk_safe_coords"
 require_relative "turn_left"
+require_relative "turn_right"
 
 # Import classes needed
 require_relative "command"
@@ -80,9 +81,11 @@ def menu()
           puts "unsafe placement"
         end # end if chk_safe_coords(x, y)
       when "LEFT"
+        # Update current facing
         current_place_and_direction.f = turn_left(current_place_and_direction.f)
       when "RIGHT"
-        puts "right"
+        # Update current facing
+        current_place_and_direction.f = turn_right(current_place_and_direction.f)
       when "MOVE"
         puts "move"
       when "REPORT"

@@ -14,7 +14,7 @@ if turn right, then new direction is West
 
 case current direction West,
 if turn left, then new direction is South
-if turn right, then new direction is East
+if turn right, then new direction is North
 
 
 Going forward related
