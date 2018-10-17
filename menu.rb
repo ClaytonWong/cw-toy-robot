@@ -3,6 +3,7 @@ require_relative "get_input"
 require_relative "chk_safe_coords"
 require_relative "turn_left"
 require_relative "turn_right"
+require_relative "move"
 
 # Import classes needed
 require_relative "command"
@@ -10,6 +11,11 @@ require_relative "place_direction"
 
 def menu()
   system 'clear' # Clear Screen
+
+  # Create new objects for my_command, current_place_and_direction, and next_place_and_direction
+  my_command = Command.new
+  current_place_and_direction = Place_direction.new
+  next_place_and_direction = Place_direction.new
 
   # Variable to see if a valid PLACE command had been given at the start, initialse it to false
   valid_place = false 
@@ -25,8 +31,6 @@ def menu()
     puts "PLACE 0,0,NORTH"
 
     inputs = get_input() # Get input from user
-
-    my_command = Command.new
     my_command.action = inputs[0] # Get action part of input
     
     if my_command.action == "PLACE" # If PLACE command given
@@ -44,8 +48,6 @@ def menu()
         # initialize current place and direction with 
         # x and y coordinates and facing given at input
         
-        current_place_and_direction = Place_direction.new
-
         current_place_and_direction.x = my_command.x
         current_place_and_direction.y = my_command.y
         current_place_and_direction.f = my_command.f
@@ -87,7 +89,21 @@ def menu()
         # Update current facing
         current_place_and_direction.f = turn_right(current_place_and_direction.f)
       when "MOVE"
-        puts "move"
+        
+        next_place_and_direction = move(current_place_and_direction)
+
+        if chk_safe_coords(next_place_and_direction.x, next_place_and_direction.y)
+          puts "safe move"
+
+          # You have moved the robot to a safe place so
+          # update current place with new
+          # x and y coordinates 
+
+          current_place_and_direction.x = next_place_and_direction.x
+          current_place_and_direction.y = next_place_and_direction.y
+        else
+          puts "unsafe move"
+        end # end if chk_safe_coords(x, y)
       when "REPORT"
         print "#{current_place_and_direction.x},"
         print "#{current_place_and_direction.y},"
