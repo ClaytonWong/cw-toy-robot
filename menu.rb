@@ -12,6 +12,10 @@ require_relative "place_direction"
 def menu()
   system 'clear' # Clear Screen
 
+  #input_file = File.open("test.txt")
+
+  #while line = input_file.gets.upcase.strip # Get input from file
+  
   # Create new objects for my_command, current_place_and_direction, and next_place_and_direction
   my_command = Command.new
   current_place_and_direction = Place_direction.new
@@ -31,10 +35,12 @@ def menu()
     #puts "PLACE 0,0,NORTH"
     #print ">"
 
+    #inputs = line.to_s.split(" ")
     inputs = get_input() # Get input from user
     my_command.action = inputs[0] # Get action part of input
     
     if my_command.action == "PLACE" # If PLACE command given
+      
       x_y_f = inputs[1].to_s.split(",") # Split second part of PLACE command marked by ','
       
       my_command.x = x_y_f[0].to_i # First part is x coordinate
@@ -73,6 +79,8 @@ def menu()
     #puts "e.g. a valid place command is:"
     #puts "PLACE 0,0,NORTH"
     #print ">"
+  
+    #inputs = line.to_s.split(" ")
     inputs = get_input() # Get input from user
     my_command.action = inputs[0] # Get action part of input
 
@@ -136,6 +144,8 @@ def menu()
         #puts " "
     end # End case
   end # End loop do for menu
+  #end #end while line = fgets..
+  #input_file.close
 end # End menu
 
 menu()
