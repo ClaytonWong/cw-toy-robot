@@ -82,7 +82,10 @@ def menu()
       when "MOVE"
         puts "move"
       when "REPORT"
-        puts "report"
+        print "#{current_place_and_direction.x},"
+        print "#{current_place_and_direction.y},"
+        print "#{current_place_and_direction.f}"
+        puts  ""
       else
         puts "INVALID INPUT GIVEN!"
     end # End case
