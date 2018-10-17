@@ -1,4 +1,5 @@
 require_relative "chk_safe_coords"
+require_relative "command"
 
 def menu()
   system 'clear' # Clear Screen
@@ -19,14 +20,17 @@ def menu()
     input = gets.upcase.strip # Read input from user
     inputs = input.to_s.split(" ") # Split input up into pieces marked by spaces
     
-    if inputs[0] == "PLACE" # If PLACE command given
+    my_command = Command.new
+    my_command.action = inputs[0]
+    
+    if my_command.action == "PLACE" # If PLACE command given
       i = inputs[1].to_s.split(",") # Split second part of PLACE command marked by ','
       
-      x = i[0].to_i # First part is x coordinate
-      y = i[1].to_i # Second part is y coordinate
-      f = i[2] # Third part is facing
+      my_command.x = i[0].to_i # First part is x coordinate
+      my_command.y = i[1].to_i # Second part is y coordinate
+      my_command.f = i[2] # Third part is facing
 
-      if chk_safe_coords(x, y)
+      if chk_safe_coords(my_command.x, my_command.y)
         valid_place = true
         puts "safe placement"
       else
